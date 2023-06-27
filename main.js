@@ -1,82 +1,142 @@
-const API_URL = 'https://api.thecatapi.com/v1/images/search?limit=8&api_key=live_WArgO19FkpjikcQAB96ytgWiXOmhVdEW3pLBo2SsmNav8xUDGCKkLp8qHNfxMhw0';
-const API_URL_DOG = 'https://api.thedogapi.com/v1/images/search?limit=8&api_key=live_WArgO19FkpjikcQAB96ytgWiXOmhVdEW3pLBo2SsmNav8xUDGCKkLp8qHNfxMhw0'
+const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=3';
+const API_URL_FAVOURITES = 'https://api.thecatapi.com/v1/favourites';
+const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?&api_key=live_WArgO19FkpjikcQAB96ytgWiXOmhVdEW3pLBo2SsmNav8xUDGCKkLp8qHNfxMhw0`;
 
+const spanError = document.getElementById('error');
 
-function reloadNasa() {
-
-  const Nasa_api = 'ccaxmjyvWqO1nRqHOSuI9xHfyeey0bfTGtdLtMhk';
-  const API_URL_NASA = `https://api.nasa.gov/planetary/apod?api_key=${Nasa_api}`;
-
-
-   fetch(API_URL_NASA)
-      .then(res => res.json())
-      .then(res => mostrarData(res))
-
-}
-
-function mostrarData({date, explanation, media_type, tittle, url}){
-      const titulo = document.querySelector('#titulo');
-      titulo.innerHTML = tittle;
-      const fecha = document.querySelector('#fecha');
-      fecha.innerHTML = date;
-      const descripcion = document.querySelector('#descripcion');
-      descripcion.innerHTML = explanation;
-      const multimedia = document.querySelector('#c_multimedia')
-      if(media_type == 'video'){
-          multimedia.innerHTML = `<iframe class="embed-resposive-item" src="${url}"</iframe>`
-      } else {
-        multimedia.innerHTML = `<img src="${url}" class="img-fluid" alt="${url}"></img>`
-        
-      }
-    
-}
-
-async function reload() {
-    const res = await fetch(API_URL)
+async function loadRamdomMichis() {
+  try{ 
+    const res = await fetch(API_URL_RANDOM);
     const data = await res.json()
+    console.log('Ramdons')
     console.log(data)
-    const img1 = document.getElementById('img1');
-    const img2 = document.getElementById('img2'); 
-    const img3 = document.getElementById('img3');
-    const img4 = document.getElementById('img4');
-    const img5 = document.getElementById('img5');
-    const img6 = document.getElementById('img6');
-    const img7 = document.getElementById('img7');
-    const img8 = document.getElementById('img8');
-    img1.src = data[0].url;
-    img2.src = data[1].url;
-    img3.src = data[2].url;
-    img4.src = data[3].url;
-    img5.src = data[4].url;
-    img6.src = data[5].url;
-    img7.src = data[6].url;
-    img8.src = data[7].url;
+
+    if(res.status != 200){
+      spanError.innerHTML = "Hubo un error en saveFavouriteMichis: " + res.status + data.message;
+    } else { 
+
+      const img1 = document.getElementById('img1');
+      const img2 = document.getElementById('img2'); 
+      const img3 = document.getElementById('img3'); 
+      const btn1 = document.getElementById('btn1'); 
+      const btn2 = document.getElementById('btn2'); 
+      const btn3 = document.getElementById('btn3'); 
+
+      img1.src = data[0].url;
+      img2.src = data[1].url;
+      img3.src = data[2].url;
+
+      btn1.onclick = () => saveFavouriteMichi(data[0].id);
+      btn2.onclick = () => saveFavouriteMichi(data[1].id);
+      btn3.onclick = () => saveFavouriteMichi(data[2].id);
+
+  }
+
+ }catch(error){
+ console.log("Hay un error en loadRamdomMichis" + error)
+ }
 
 }
-reload();
 
-async function reloadDogs(){
-  const res = await fetch(API_URL_DOG)
-  const data = await res.json()
-  console.log(data)
-  const imgp1 = document.getElementById('imgp1');
-    const imgp2 = document.getElementById('imgp2'); 
-    const imgp3 = document.getElementById('imgp3');
-    const imgp4 = document.getElementById('imgp4');
-    const imgp5 = document.getElementById('imgp5');
-    const imgp6 = document.getElementById('imgp6');
-    const imgp7 = document.getElementById('imgp7');
-    const imgp8 = document.getElementById('imgp8');
+async function loadFavouriteMichis(){
+  const res = await fetch(API_URL_FAVOURITES, {
+      method: 'GET',
+      headers: {
+            'X-API-KEY': 'live_WArgO19FkpjikcQAB96ytgWiXOmhVdEW3pLBo2SsmNav8xUDGCKkLp8qHNfxMhw0',
+      },
 
-    imgp1.src = data[0].url;
-    imgp2.src = data[1].url;
-    imgp3.src = data[2].url;
-    imgp4.src = data[3].url;
-    imgp5.src = data[4].url;
-    imgp6.src = data[5].url;
-    imgp7.src = data[6].url;
-    imgp8.src = data[7].url;
+  });
+    const data = await res.json()
+    console.log('Favoritos')
+    console.log(data);
+
+    if(res.status != 200){
+      spanError.innerHTML = "Hubo un error en loadFavouriteMichis: " + res.status + data.message;
+    } else {
+      const section = document.getElementById('favouriteMichis') 
+      section.innerHTML = "";
+      const h2 = document.createElement('h2');
+      const h2Text = document.createTextNode('Michis favoritos')
+      h2.appendChild(h2Text);
+      section.appendChild(h2);
+
+        data.forEach(michi => {
+          if(michi.image.url)
+          {
+            const article = document.createElement('article');
+            const img = document.createElement('img');
+            const btn = document.createElement('button');
+            const btnText = document.createTextNode('Sacar al michi de favoritos') 
+
+                     img.src = michi.image.url;
+                     img.width = 150;
+                      img.height = 150;
+                      btn.appendChild(btnText);
+                      btn.onclick = () => deleteFavouriteMichi(michi.id);
+                   
+                      
+                      article.appendChild(img);
+                      article.appendChild(btn);
+                      section.appendChild(article);
+                  
+          }
+         
+        });
+    }
 }
-reloadDogs();
+
+async function deleteFavouriteMichi(id){
+  
+      const res = await fetch(API_URL_FAVOURITES_DELETE(id), {
+        method: 'DELETE',
+        headers: {
+          'X-API-KEY': 'live_WArgO19FkpjikcQAB96ytgWiXOmhVdEW3pLBo2SsmNav8xUDGCKkLp8qHNfxMhw0',
+        }, 
+      });
+
+      const data = await res.json();
+
+      if(res.status != 200){
+        spanError.innerHTML = "Hubo un error en deleteFavouriteMichis: " + res.status + data.message;
+      } else{
+        console.log("Michi eliminado exitosamente")
+        loadFavouriteMichis();
+      }
+
+  
+}
+
+async function saveFavouriteMichi(id){
+  try{ 
+      const res = await fetch(API_URL_FAVOURITES, {
+        method: 'POST',
+        headers: {
+            'X-API-KEY': 'live_WArgO19FkpjikcQAB96ytgWiXOmhVdEW3pLBo2SsmNav8xUDGCKkLp8qHNfxMhw0',
+            'Content-Type': 'application/json',
+        }, 
+        body: JSON.stringify({
+          image_id:  id
+        }),
+      });
+
+      const data = await res.json();
+
+      console.log('save')
+      console.log(res);
+
+      if(res.status != 200){
+        spanError.innerHTML = "Hubo un error en saveFavouriteMichis: " + res.status + data.message;
+      } else{
+        console.log("Michi guardado exitosamente")
+        loadFavouriteMichis();
+      }
+
+    }catch(error){
+    console.log("Error en el saveFavouriteMichi" + error)
+    }
+}
+loadRamdomMichis();
+loadFavouriteMichis();
+
 
 

@@ -1,0 +1,126 @@
+/* Estilos globales */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #123453;
+  color: #fff;
+}
+
+/* Estilos para los encabezados */
+h1,
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 50px;
+}
+
+/* Estilos para la sección de michis aleatorios */
+#randomMichis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+#randomMichis h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#randomMichis article {
+  margin: 10px;
+  width: 30%;
+  background-color: rgb(85, 1, 1);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#randomMichis article:hover {
+  transform: translateY(-10px);
+}
+
+#randomMichis img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#randomMichis button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: rgb(118, 36, 61);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#randomMichis button:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilos para la sección de michis favoritos */
+#favouriteMichis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+#favouriteMichis img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#favouriteMichis h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#favouriteMichis article {
+  margin: 10px;
+  width: 30%;
+  background-color: rgb(85, 1, 1);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#favouriteMichis article:hover {
+  transform: translateY(-10px);
+}
+
+#favouriteMichis button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: rgb(118, 36, 61);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#favouriteMichis button:hover {
+  background-color: #f1f1f1;
+}

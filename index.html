@@ -4,51 +4,44 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity=""
-  <title>Gatos Aleatorios</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Michis App</title>
 </head>
 <body>
-  <section id="GatitosRamdom">
-    <h1>Gatos Aleatorios</h1>
 
-    <img id="img1" width="150" height="150" alt="Foto de gato aleatorio">
-    <img id="img2" width="150" height="150" alt="Foto de gato aleatorio">
-    <img id="img3" width="150" height="150" alt="Foto de gato aleatorio">
-    <img id="img4" width="150" height="150" alt="Foto de gato aleatorio">
-    <img id="img5" width="150" height="150" alt="Foto de gato aleatorio">
-    <img id="img6" width="150" height="150" alt="Foto de gato aleatorio">
-    <img id="img7" width="150" height="150" alt="Foto de gato aleatorio">
-    <img id="img8" width="150" height="150" alt="Foto de gato aleatorio">
-    <button onclick="reload()">Show me another cat!</button>
+    <span id="error"></span>
 
-  </section> 
-  <section id="NASA">
-    <div class="container">
-      <h1>NASA</h1>
-      <h3 id="titulo" class="pt-5 text-center"></h3>
-      <p id="fecha" class="text-center"></p>
-      <p id="descripcion" class="lead pt-5"></p>
+    <h2>Michis aleatorios</h2>
+    <section id="randomMichis">
 
-      <div id="c_multimedia" class="embed-responsive embed-responsive-21by9 text-center"></div>
+      <article>
+        <img id="img1" width="150" height="150" alt="Foto Gatito Aleatorio">
+        <button id="btn1">Guardar michi en favoritos</button>
+      </article>
+
+      <article>
+        <img id="img2" width="150" height="150" alt="Foto Gatito Aleatorio">
+        <button id="btn2">Guardar michi en favoritos</button>
+      </article>
+
+      <article>
+        <img id="img3" width="150" height="150" alt="Foto Gatito Aleatorio">
+        <button id="btn3">Guardar michi en favoritos</button>
+      </article>
+
+      <button onclick="loadRamdomMichis()">Muestrame otros gatitos!</button>
+    </section>
+    
+    <section id="favouriteMichis">
      
-      <button onclick="reloadNasa()">Show me something about the nasa!</button>
-    </div>  
-  </section>
+      <article>
+        <img id="img1" width="150" alt="Foto Gatito favorito">
+        <button>Sacar al michi de favoritos</button>
+      </article>
+      
+    </section>
 
-  <section id="PerritosRadom">
-    <h1>Perritos Aleatorios</h1>
 
-    <img id="imgp1" width="150" height="150" alt="Foto de perrito aleatorio">
-    <img id="imgp2" width="150" height="150" alt="Foto de perrito aleatorio">
-    <img id="imgp3" width="150" height="150" alt="Foto de perrito aleatorio">
-    <img id="imgp4" width="150" height="150" alt="Foto de perrito aleatorio">
-    <img id="imgp5" width="150" height="150" alt="Foto de perrito aleatorio">
-    <img id="imgp6" width="150" height="150" alt="Foto de perrito aleatorio">
-    <img id="imgp7" width="150" height="150" alt="Foto de perrito aleatorio">
-    <img id="imgp8" width="150" height="150" alt="Foto de perrito aleatorio">
-
-    <button onclick="reloadDogs()">Show me another dog!</button>
-  </section>
     <script src="./main.js"></script>
 </body>
 </html>
