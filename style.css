@@ -73,6 +73,28 @@ h2 {
   background-color: #f1f1f1;
 }
 
+/*Estilos para el uploadMichi*/
+#uploadingForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+#uploadingForm button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: rgb(118, 36, 61);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 /* Estilos para la sección de michis favoritos */
 #favouriteMichis {
   display: flex;
